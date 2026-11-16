@@ -1,0 +1,55 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123e3a"><title>Livro Digital | Projetos Multidisciplinares</title><link rel="stylesheet" href="style.css"></head><body><header class="top"><div><div class="brand" id="institution">Biblioteca Digital de Projetos</div><div class="small" id="course">Projeto Integrador II • Documentação de Software</div></div><div class="small" id="schoolYear">Edição 2026</div></header><main><p class="eyebrow">Livro digital interativo · Documentação técnica</p><h1 class="heading" id="heading">Documentação do Projeto</h1><p class="subheading" id="subtitle"></p><div class="actions" aria-label="Controles de leitura"><button id="prev">← Anterior</button><button class="primary" id="next">Próxima →</button><button id="sound" aria-pressed="false">🔇 Ativar som</button><button id="test">♪ Testar som</button><select id="toc" aria-label="Acessar capítulo"><option value="0">Ir para uma seção</option></select><button id="linear">☷ Leitura linear</button><button id="contrast" aria-pressed="false">◐ Alto contraste</button><button id="zoom">A+ Ampliar</button></div><div class="details"><a id="pdfLink" class="pill" href="documentos/projeto.pdf" target="_blank" rel="noopener">↗ Abrir PDF original</a><a id="repoLink" class="pill" target="_blank" rel="noopener">⌘ Repositório GitHub</a><a id="appLink" class="pill" target="_blank" rel="noopener">↗ Acessar software</a><a id="videoLink" class="pill" target="_blank" rel="noopener">▶ Demonstração</a></div><div class="warning" role="alert" id="warning"></div><div id="status" class="status" aria-live="polite">Preparando o livro…</div><div class="load-progress" id="loadProgress" role="progressbar" aria-label="Carregamento do livro" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="loadProgressFill" class="load-progress-fill"></div><span id="loadProgressText">0%</span></div><section class="stage" id="stage" aria-label="Páginas do livro"><div id="book" class="book loading-cover"><article class="page cover" data-density="hard" id="cover"><img id="coverArtwork" class="coverArtwork" alt="Capa personalizada do projeto" hidden><div class="coverInner"><img id="themeLogo" class="themeLogo" alt="Identidade da instituição" hidden><div class="topnote" id="coverSchool">PROJETO INTEGRADOR II</div><div><div class="orn">❦</div><h2 id="coverTitle">NOME DO PROJETO</h2><p id="coverSub"></p></div><div class="by"><span id="coverAuthors"></span><p id="coverMentor"></p><small id="coverCity"></small></div></div></article></div></section><section class="linear" id="linearView"><iframe id="pdfFrame" title="Documento original em leitura contínua"></iframe></section><div class="bottom"><button id="first">⇤ Capa</button><label for="pageNo">Página do PDF</label><input type="number" id="pageNo" min="1" value="1"><button id="goPage">Ir</button><button id="last">Última página ⇥</button></div><details class="notes"><summary>Acessibilidade, navegação e créditos</summary><p>Use as setas ← e → do teclado para folhear. Para busca, seleção de texto, leitores de tela e zoom detalhado, abra o PDF original ou utilize a leitura linear. O som inicia desativado. A opção de alto contraste modifica os controles do site, não altera as páginas do PDF.</p><p>Os capítulos seguem a estrutura do Modelo de Documentação do Projeto V3. O conteúdo é de responsabilidade dos autores de cada equipe. Revise a presença de dados pessoais, autorizações de imagem e direitos antes de publicar.</p></details></main><footer id="footer"></footer><script src="config.js"></script><script>
+/* Capa visivel imediatamente, mesmo enquanto as bibliotecas online carregam. */
+(function(){
+ const cfg=window.LIVRO_CONFIG||{};
+ const cover=document.getElementById('cover');
+ const artwork=document.getElementById('coverArtwork');
+ if(cfg.capa && artwork){
+   artwork.src=cfg.capa;
+   artwork.hidden=false;
+   cover.classList.add('hasCoverArtwork','coverRendered');
+ }
+ const title=document.getElementById('heading');if(title) title.textContent=cfg.titulo||'Livro digital';
+ const coverTitle=document.getElementById('coverTitle');if(coverTitle)coverTitle.textContent=cfg.titulo||'Projeto';
+ const sub=document.getElementById('coverSub');if(sub)sub.textContent=cfg.subtitulo||'Documentação do Software';
+ const label=document.getElementById('status');if(label)label.textContent='Capa pronta. Preparando o documento… · 2%';
+ const progress=document.getElementById('loadProgress');if(progress)progress.setAttribute('aria-valuenow','2');
+ const fill=document.getElementById('loadProgressFill');if(fill)fill.style.width='2%';
+ const ptext=document.getElementById('loadProgressText');if(ptext)ptext.textContent='2%';
+})();
+</script><script>
+/* Versão 8 otimizada: bibliotecas de folhear carregadas sem bloquear a capa. */
+(function(){
+ const s=document.getElementById('status'),p=document.getElementById('loadProgress'),bar=document.getElementById('loadProgressFill'),label=document.getElementById('loadProgressText');
+ const cfg=window.LIVRO_CONFIG||{};
+ function note(t){if(s)s.textContent=t}
+ function progress(v,t){if(p){p.hidden=false;p.setAttribute('aria-valuenow',String(v))}if(bar)bar.style.width=v+'%';if(label)label.textContent=v+'%';if(t)note(t+' · '+v+'%')}
+ // Preparação visível sem transformar percentuais em cronômetros falsos.
+ progress(3,'Capa disponível. Verificando recursos de leitura');
+ const script=(url,ms)=>new Promise((resolve,reject)=>{
+   const e=document.createElement('script');let done=false;
+   const timer=setTimeout(()=>{if(done)return;done=true;e.remove();reject(Error('Tempo limite ao carregar a biblioteca de leitura'))},ms);
+   e.onload=()=>{if(done)return;done=true;clearTimeout(timer);resolve()};
+   e.onerror=()=>{if(done)return;done=true;clearTimeout(timer);reject(Error('Biblioteca de leitura indisponível'))};
+   e.src=url;e.async=true;document.head.appendChild(e);
+ });
+ function nativeFallback(error){
+   if(window.__bookInitialized)return;
+   const msg=document.getElementById('warning');if(msg){msg.style.display='block';msg.textContent='Leitura de PDF disponível sem animação neste navegador. '+(error?error.message:'')}
+   // Preserva a capa, deixando o leitor nativo logo abaixo.
+   const linear=document.getElementById('linearView'),frame=document.getElementById('pdfFrame');
+   if(linear&&frame){linear.style.display='block';if(!cfg.previewDirect&&!cfg.previewSession){frame.src=cfg.pdf||'documentos/projeto.pdf';}else{frame.srcdoc='<p style="font:16px system-ui;padding:18px">Abra o PDF original pela opção acima ou use o livro publicado.</p>';}}
+   if(p)p.hidden=true;note('Capa exibida. Leitura disponível; animação indisponível neste ambiente.');
+ }
+ (async()=>{
+  try{
+   await script('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',8000);
+   progress(7,'Biblioteca de PDF carregada');
+   await script('https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js',8000);
+   progress(9,'Preparando animação');
+   window.__bookInitialized=true;
+   await script('app.js',8000);
+  }catch(e){nativeFallback(e)}
+ })();
+})();
+</script></body></html>

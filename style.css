@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+:root{--ink:#173b36;--accent:#d9bd82;--bg:#f5f4ef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1f2f2c;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{text-decoration:none;color:inherit}.top{background:linear-gradient(135deg,var(--ink),#102c28);color:#fff;padding:18px max(18px,calc((100% - 1180px)/2));display:flex;justify-content:space-between;gap:16px;align-items:end}.brand{font:700 20px/1.1 'Libre Baskerville',Georgia,serif}.small{font-size:13px;opacity:.88}main{max-width:1180px;margin:auto;padding:24px 18px 36px}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:12px;color:#6a756f}.heading{font:700 clamp(30px,4vw,44px)/1.1 'Libre Baskerville',Georgia,serif;margin:8px 0 10px}.subheading{font-size:18px;color:#4d5e59;margin:0 0 18px}.actions,.details,.bottom{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.actions{margin:14px 0 16px}.actions button,.actions .pill,.actions select,.bottom button{appearance:none;border:1px solid #cdd7d2;background:#fff;padding:10px 14px;border-radius:999px;font:600 14px system-ui;cursor:pointer;box-shadow:0 3px 8px #0000000d}.actions .primary{background:var(--ink);color:#fff;border-color:var(--ink)}.actions .pill{display:inline-flex;align-items:center;gap:6px}.details{margin-bottom:14px}.stage{display:flex;justify-content:center;align-items:flex-start;min-height:520px;margin-top:6px}.book{margin:auto}.page{background:#fff;display:flex;justify-content:center;align-items:center;overflow:hidden;border-radius:2px;box-shadow:0 1px 4px #00000018}.page canvas{display:block;width:100%;height:auto}.loader{font-size:14px;color:#5d6b66;padding:24px;text-align:center}
+.cover{position:relative;isolation:isolate;color:#fff;background:linear-gradient(145deg,#1b5045 0%,#143e35 60%,#12362e 100%)}
+.cover::before{content:"";position:absolute;inset:12px;border:1.6px solid rgba(220,183,120,.95);pointer-events:none;border-radius:3px}
+.cover::after{content:"";position:absolute;inset:22px;border:1px solid rgba(220,183,120,.45);pointer-events:none;border-radius:3px}
+.coverInner{position:relative;z-index:2;min-height:100%;display:flex;flex-direction:column;justify-content:space-between;text-align:center;padding:34px 24px}
+.cover .themeLogo{display:none}
+.cover .topnote{font-size:13px;letter-spacing:.18em;color:#f6e7c2;text-transform:uppercase}
+.cover .orn{color:#e2be76;font-size:28px;line-height:1;text-shadow:0 2px 8px #0004}
+.cover h2{font:700 clamp(28px,4vw,44px)/1.15 'Libre Baskerville',Georgia,serif;color:#f7d785;margin:10px 0 8px;overflow-wrap:anywhere;text-shadow:0 2px 10px #0005}
+.cover p{margin:0;color:#fff5dd}.cover .by{display:flex;flex-direction:column;gap:8px;color:#f6e7c2}.cover small{color:#f2d798}
+.cover.theme-academica{background:radial-gradient(circle at 85% 4%,#27554a,transparent 34%),linear-gradient(160deg,#173b36,#0b2823)}
+.cover.theme-academica .coverInner{background:linear-gradient(180deg,transparent,rgba(0,0,0,.05));}
+.cover.theme-academica .orn{font-size:30px}
+.cover.coverImg.theme-ifsp-editorial,.cover.coverImg.theme-seduc-editorial{background-size:100% 100%;background-position:center;background-repeat:no-repeat}
+.cover.coverImg.theme-ifsp-editorial::before,.cover.coverImg.theme-ifsp-editorial::after,.cover.coverImg.theme-seduc-editorial::before,.cover.coverImg.theme-seduc-editorial::after{display:none}
+.cover.coverImg.theme-ifsp-editorial .coverInner,.cover.coverImg.theme-seduc-editorial .coverInner{display:none}
+.integratedTitle{position:absolute;left:10%;width:80%;text-align:center;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.integratedTitle h2{margin:0 0 8px;color:#f7d785;font:700 clamp(26px,4.9vw,58px)/1.02 'Libre Baskerville',Georgia,serif;text-shadow:0 2px 8px rgba(0,0,0,.45),0 0 2px rgba(0,0,0,.35);overflow-wrap:anywhere}
+.integratedTitle p{margin:0;color:#fff4da;font:italic clamp(13px,1.9vw,23px)/1.16 Georgia,serif;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.integratedTitle.ifsp{top:47%;transform:translateY(-50%)}
+.integratedTitle.seduc{top:60%;transform:translateY(-50%)}
+.warning{background:#fff2cc;color:#543f1d;padding:10px 12px;border-radius:10px;margin:0 auto 10px;max-width:780px;display:none}.status{font-size:14px;color:#51635d;text-align:center;min-height:20px;margin:8px 0 14px}.linear{display:none;background:#fff;border:1px solid #d8dedb;border-radius:14px;padding:10px}.linear iframe{width:100%;height:78vh;border:0;border-radius:8px;background:#fff}.bottom{justify-content:center;margin-top:14px}.bottom input{width:90px;padding:9px 10px;border-radius:999px;border:1px solid #cdd7d2;font:inherit;text-align:center}.notes{margin-top:16px;background:#fff;border:1px solid #d8dedb;border-radius:14px;padding:12px 14px}.notes summary{cursor:pointer;font-weight:700}.linkDisabled{opacity:.45;pointer-events:none}.screenReader{position:absolute;left:-9999px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #cc8c29;outline-offset:3px}body.large .linear iframe{height:85vh}body.contrast{background:#fff;color:#000}body.contrast .top{background:#000}body.contrast button{border-color:#000}body.contrast .subheading,body.contrast .status{color:#202020}@media(max-width:650px){.stage{min-height:460px;padding:5px 0}main{padding:18px 9px}.actions button,.actions .pill,.actions select{font-size:12px;padding:9px 10px}.coverInner{padding:20px 14px}.cover h2{font-size:24px}.brand-variable{padding:14px 16px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:0ms!important;transition-duration:0ms!important;scroll-behavior:auto!important}}
+
+/* Ajustes finais de capa: posicionamento e tipografia em dourado */
+.integratedTitle{max-height:23%;overflow:hidden}
+.integratedTitle h2{font-size:clamp(19px,4.1vw,46px);letter-spacing:.02em;line-height:1.08}
+.integratedTitle p{font-size:clamp(12px,1.5vw,20px);margin-top:4px}
+
+/* A imagem da capa final é idêntica no painel e no livro publicado. */
+.cover.coverRendered {background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important}
+.cover.coverRendered .coverInner{display:none!important}
+.cover.coverRendered::before,.cover.coverRendered::after{display:none!important}
+
+/* Progresso de carregamento do livro (sem alteração da qualidade do PDF) */
+.load-progress{position:relative;width:min(450px,90%);height:22px;margin:0 auto 16px;background:#e7ede8;border-radius:999px;overflow:hidden;border:1px solid #cad8d0;text-align:center}
+.load-progress-fill{height:100%;width:0;background:linear-gradient(90deg,#0c6b52,#d6b16e);transition:width .15s ease}
+.load-progress span{position:absolute;inset:0;font-size:12px;font-weight:800;line-height:20px;color:#102e29;text-shadow:0 1px 2px #ffffffcc}
+.load-progress[hidden]{display:none!important}
+
+/* Exibe imediatamente a capa, antes do carregamento das páginas do PDF. */
+.book.loading-cover .cover{width:min(405px,88vw);aspect-ratio:.72;min-height:520px;flex-shrink:0}
+.book.loading-cover .cover .coverInner{height:100%}
+@media(max-width:560px){.book.loading-cover .cover{min-height:390px}}
+
+/* V6: usar imagem real na primeira folha, para que PageFlip nao descarte o fundo CSS */
+.cover{position:relative!important;overflow:hidden}
+.cover .coverArtwork{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:fill;z-index:5}
+.cover .coverArtwork[hidden]{display:none!important}
+.cover.hasCoverArtwork .coverInner{display:none!important}
+.cover.hasCoverArtwork::before,.cover.hasCoverArtwork::after{display:none!important}
+.book.loading-cover .cover.hasCoverArtwork .coverArtwork{width:100%;height:100%;object-fit:fill}
+
+/* Contracapa institucional: última folha do livro */
+.page.backcover{background:#0b2548}
+.page.backcover img{display:block;width:100%;height:100%;object-fit:fill}
